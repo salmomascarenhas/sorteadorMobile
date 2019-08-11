@@ -1,4 +1,6 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import React from 'react';
+
 
 import App from './';
 import About from './components/About/';

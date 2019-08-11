@@ -18,7 +18,12 @@ export default class App extends Component {
 
   static navigationOptions = {
     headerTitle: 'Sorteador',
-    headerRight: <ButtonRight />
+    headerRight: (
+      <View style={{ paddingRight: 10 }}>
+        <Button
+          onPress={() => alert('Pressionado!')}
+          title="..." />
+      </View>)
   }
 
   randomNumber = () => {
@@ -28,11 +33,27 @@ export default class App extends Component {
     min = parseInt(min);
     max = parseInt(max);
 
+    // console.log(min, max)
+
+    if (isNaN(min) || isNaN(max)) {
+      alert('Campo vazio.')
+
+      return
+    }
 
     randomNumber = Math.random() * (max - min) + min;
     randomNumber = Math.round(randomNumber).toString();
 
     this.setState({ randomNumber });
+
+    return
+
+
+
+
+
+
+
   }
 
 
