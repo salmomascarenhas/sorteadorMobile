@@ -13,12 +13,13 @@ class App extends Component {
     };
   }
 
-  calculateNumber = () => {
+  randomNumber = () => {
     let { min, max } = this.state;
     let randomNumber;
 
     min = parseInt(min);
     max = parseInt(max);
+
 
     randomNumber = Math.random() * (max - min) + min;
     randomNumber = Math.round(randomNumber).toString();
@@ -26,17 +27,22 @@ class App extends Component {
     this.setState({ randomNumber });
   }
 
+
+
   render() {
     return <View style={styles.container}>
-
-      <View style={{ flexDirection: "row", justifyContent: 'center' }}>
-        <Text style={styles.textResult}>{this.state.randomNumber}</Text>
-      </View>
-
       <View style={styles.inputs}>
 
+        <TextInput style={styles.inputDe}
+          value={this.state.min}
+          placeholder='De'
+          keyboardType="numeric"
+          multiline={false}
+          numberOfLines={1}
+          maxLength={5}
+          onChangeText={(min) => this.setState({ min })} />
 
-        <TextInput style={styles.input}
+        <TextInput style={styles.inputAte}
           value={this.state.max}
           placeholder='Até'
           keyboardType="numeric"
@@ -45,17 +51,16 @@ class App extends Component {
           maxLength={5}
           onChangeText={(max) => this.setState({ max })} />
 
-        <TextInput style={styles.input}
-          value={this.state.min}
-          placeholder='De'
-          keyboardType="numeric"
-          multiline={false}
-          numberOfLines={1}
-          maxLength={5}
-          onChangeText={(min) => this.setState({ min })} />
       </View>
 
-      <Button onPress={this.calculateNumber} style={styles.button} title='Gerar número' />
+      <View style={{ flexDirection: "row", justifyContent: 'center' }}>
+        <Text style={styles.textResult}>{this.state.randomNumber}</Text>
+      </View>
+
+
+      <View style={styles.button}>
+        <Button onPress={this.randomNumber} title='Sortear' />
+      </View>
 
     </View>
   }
@@ -77,14 +82,24 @@ const styles = StyleSheet.create({
     paddingBottom: 50
   },
   inputs: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
 
   },
-  input: {
+  inputDe: {
     fontSize: 30,
     textAlign: 'center',
-    paddingBottom: 5,
-    borderBottomColor: '#e0dcd1'
+    borderBottomColor: '#e0dcd1',
+    borderBottomWidth: 1,
+    marginRight: 10,
+    maxWidth: 80
+  },
+  inputAte: {
+    fontSize: 30,
+    textAlign: 'center',
+    borderBottomColor: '#e0dcd1',
+    borderBottomWidth: 1,
+    maxWidth: 80
   },
   button: {
     marginTop: 20
