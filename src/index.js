@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button, Text, TextInput } from 'react-native';
+import { View, Button, Text, TextInput } from 'react-native';
 
-class App extends Component {
+import styles from './styles';
+import ButtonRight from './components/ButtonRight';
+
+export default class App extends Component {
 
   constructor(props) {
     super(props);
@@ -11,6 +14,11 @@ class App extends Component {
       min: '',
       max: ''
     };
+  }
+
+  static navigationOptions = {
+    headerTitle: 'Sorteador',
+    headerRight: <ButtonRight />
   }
 
   randomNumber = () => {
@@ -31,6 +39,13 @@ class App extends Component {
 
   render() {
     return <View style={styles.container}>
+
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+
+        <Text style={styles.textResult}>{this.state.randomNumber}</Text>
+
+      </View>
+
       <View style={styles.inputs}>
 
         <TextInput style={styles.inputDe}
@@ -53,58 +68,13 @@ class App extends Component {
 
       </View>
 
-      <View style={{ flexDirection: "row", justifyContent: 'center' }}>
-        <Text style={styles.textResult}>{this.state.randomNumber}</Text>
-      </View>
-
 
       <View style={styles.button}>
+
         <Button onPress={this.randomNumber} title='Sortear' />
+
       </View>
 
     </View>
   }
-};
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5'
-  },
-  textResult: {
-    fontSize: 50,
-    color: '#000',
-    fontWeight: "bold",
-    paddingBottom: 50
-  },
-  inputs: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-
-  },
-  inputDe: {
-    fontSize: 30,
-    textAlign: 'center',
-    borderBottomColor: '#e0dcd1',
-    borderBottomWidth: 1,
-    marginRight: 10,
-    maxWidth: 80
-  },
-  inputAte: {
-    fontSize: 30,
-    textAlign: 'center',
-    borderBottomColor: '#e0dcd1',
-    borderBottomWidth: 1,
-    maxWidth: 80
-  },
-  button: {
-    marginTop: 20
-  }
-
-});
-
-export default App;
+}

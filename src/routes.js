@@ -1,13 +1,20 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import App from './App';
+
+import App from './';
+import About from './components/About/';
 
 const stackNavigator = createStackNavigator({
     Home: {
-        screen: App,
-        navigationOptions: {
-            title: 'Sorteador'
-        }
+        screen: App
+    },
+    About: {
+        screen: About
     }
-});
+},
 
-export default createAppContainer(stackNavigator);
+    {
+        initialRouteName: 'Home'
+    }
+);
+
+export default routes = createAppContainer(stackNavigator);
