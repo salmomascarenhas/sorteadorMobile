@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Button, Text, TextInput } from 'react-native';
+import { View, Button, Text, TextInput, ToastAndroid, TouchableHighlight } from 'react-native';
 
 import styles from './styles';
-import ButtonRight from './components/ButtonRight';
 
 export default class App extends Component {
 
@@ -16,15 +15,16 @@ export default class App extends Component {
     };
   }
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerTitle: 'Sorteador',
     headerRight: (
       <View style={{ paddingRight: 10 }}>
         <Button
-          onPress={() => alert('Pressionado!')}
+          onPress={() => navigation.navigate('About')}
+          color={'#2591be'}
           title="..." />
       </View>)
-  }
+  })
 
   randomNumber = () => {
     let { min, max } = this.state;
@@ -33,10 +33,13 @@ export default class App extends Component {
     min = parseInt(min);
     max = parseInt(max);
 
-    // console.log(min, max)
-
     if (isNaN(min) || isNaN(max)) {
-      alert('Campo vazio.')
+      ToastAndroid.show('Preencha todos os campos', ToastAndroid.SHORT);
+
+      return
+    }
+    if (min >= max) {
+      ToastAndroid.show('Valor inválido', ToastAndroid.SHORT);
 
       return
     }
@@ -45,15 +48,6 @@ export default class App extends Component {
     randomNumber = Math.round(randomNumber).toString();
 
     this.setState({ randomNumber });
-
-    return
-
-
-
-
-
-
-
   }
 
 
@@ -90,11 +84,11 @@ export default class App extends Component {
       </View>
 
 
-      <View style={styles.button}>
+      <TouchableHighlight onPress={this.randomNumber} style={styles.button}>
 
-        <Button onPress={this.randomNumber} title='Sortear' />
+        <Text style={styles.textButton}>Sortear</Text>
 
-      </View>
+      </TouchableHighlight>
 
     </View>
   }

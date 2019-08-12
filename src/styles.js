@@ -35,7 +35,17 @@ export default styles = StyleSheet.create({
         maxWidth: 80
     },
     button: {
-        marginTop: 20
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 100,
+        height: 40,
+        backgroundColor: '#2591be',
+        borderRadius: 10
+    },
+    textButton: {
+        fontSize: 16,
+        color: '#FFFF'
     }
 
 });

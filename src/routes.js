@@ -10,7 +10,10 @@ const stackNavigator = createStackNavigator({
         screen: App
     },
     About: {
-        screen: About
+        screen: About,
+        navigationOptions: {
+            title: 'Sobre'
+        }
     }
 },
 
