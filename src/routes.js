@@ -12,7 +12,10 @@ const stackNavigator = createStackNavigator({
     About: {
         screen: About,
         navigationOptions: {
-            title: 'Sobre'
+            title: 'Sobre',
+            headerTitleStyle: {
+                fontWeight: 'bold'
+            },
         }
     }
 },

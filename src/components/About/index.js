@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, View, Text } from 'react-native';
 
 import styles from './styles';
 
 
 export default About = () => {
 
-    return <View style={styles.container}>
-        <Text style={{ fontSize: 20 }}>Autor: Salmo Mascarenhas</Text>
-        <Text style={{ fontSize: 20 }}>Email: salmo.cruz@gmail.com</Text>
+    return <SafeAreaView style={styles.container}>
+        <Text style={{ fontSize: 16 }}>Autor: Salmo Mascarenhas</Text>
+        <Text style={{ fontSize: 16 }}>Email: salmo.cruz@gmail.com</Text>
 
-    </View>;
+        <Text style={{ fontSize: 14, marginTop: 5 }}>Aplicativo feito apenas para aprendizado do React Native</Text>
+
+    </SafeAreaView>;
 };

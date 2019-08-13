@@ -38,7 +38,7 @@ export default styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 100,
+        width: 120,
         height: 40,
         backgroundColor: '#2591be',
         borderRadius: 10

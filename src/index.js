@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Button, Text, TextInput, ToastAndroid, TouchableHighlight } from 'react-native';
+import { SafeAreaView, View, Text, TextInput, ToastAndroid, TouchableOpacity, StatusBar } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles';
 
@@ -17,12 +18,16 @@ export default class App extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: 'Sorteador',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    },
     headerRight: (
       <View style={{ paddingRight: 10 }}>
-        <Button
-          onPress={() => navigation.navigate('About')}
-          color={'#2591be'}
-          title="..." />
+        <TouchableOpacity onPress={() => navigation.navigate('About')}>
+
+          <Icon name='dots-vertical' size={30} color='#2591be' />
+
+        </TouchableOpacity>
       </View>)
   })
 
@@ -53,7 +58,8 @@ export default class App extends Component {
 
 
   render() {
-    return <View style={styles.container}>
+    return <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor='#f5f5f5' barStyle='dark-content' />
 
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
 
@@ -84,12 +90,12 @@ export default class App extends Component {
       </View>
 
 
-      <TouchableHighlight onPress={this.randomNumber} style={styles.button}>
+      <TouchableOpacity onPress={this.randomNumber} style={styles.button}>
 
         <Text style={styles.textButton}>Sortear</Text>
 
-      </TouchableHighlight>
+      </TouchableOpacity>
 
-    </View>
+    </SafeAreaView>
   }
 }
