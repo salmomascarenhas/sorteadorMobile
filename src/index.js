@@ -16,6 +16,7 @@ export default class App extends Component {
     };
   }
 
+
   static navigationOptions = ({ navigation }) => ({
     headerTitle: 'Sorteador',
     headerTitleStyle: {
@@ -32,8 +33,22 @@ export default class App extends Component {
   })
 
   randomNumber = () => {
+
     let { min, max } = this.state;
     let randomNumber;
+
+    min = parseInt(min);
+    max = parseInt(max);
+
+    randomNumber = Math.random() * (max - min) + min;
+    randomNumber = Math.round(randomNumber).toString();
+
+    this.setState({ randomNumber });
+  }
+
+  setIntervalLimit = (func, time, limit) => {
+
+    let { min, max } = this.state;
 
     min = parseInt(min);
     max = parseInt(max);
@@ -49,10 +64,15 @@ export default class App extends Component {
       return
     }
 
-    randomNumber = Math.random() * (max - min) + min;
-    randomNumber = Math.round(randomNumber).toString();
-
-    this.setState({ randomNumber });
+    let n = 0; // CRIA UM CONTADOR INTERNO
+    let f = function () { // CRIA UM FUNCAO INTERNA
+      func();
+      n++;
+      if (n < limit) { // VEFIFICA CONTAGEM
+        setTimeout(f, time); // REALIZA LOOP
+      }
+    }
+    f(); // CHAMA A FUNÇÃO INTERNA 1ª VEZ
   }
 
 
@@ -90,10 +110,8 @@ export default class App extends Component {
       </View>
 
 
-      <TouchableOpacity onPress={this.randomNumber} style={styles.button}>
-
+      <TouchableOpacity onPress={() => this.setIntervalLimit(this.randomNumber, 10, 25)} style={styles.button}>
         <Text style={styles.textButton}>Sortear</Text>
-
       </TouchableOpacity>
 
     </SafeAreaView>
